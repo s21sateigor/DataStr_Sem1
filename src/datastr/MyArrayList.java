@@ -20,12 +20,72 @@ public class MyArrayList
         elements = new char[arraySize];
     }
 
-    public void isFull(){
-
+    public boolean isFull(){
+//        if(arraySize == elementCounter){
+//            return true;
+//        }
+//        return isFull();
+        return (elementCounter == arraySize);
     }
 
-    public void isEmpty(){
+    public boolean isEmpty(){
+        if(elementCounter == 0){
+            return true;
+        } else {
+            return isEmpty();
+        }
+    } // short if-else
+    //return (elementCounter == 0) ? true : false;
 
+    //var vēl īsāk
+    //return (elementCounter == 0);
+
+    public int HowManyElements(){
+        return elementCounter;
     }
+
+    private void increaseArray(){
+
+        int newArraySize = (arraySize > 100) ? (int) (arraySize * 1.5) : arraySize * 2;
+
+        char[] newElements = new char[newArraySize];
+
+        for(int i = 0; i < elementCounter; i++){
+            newElements[i] = elements[i];
+        }
+        elements = newElements;
+        arraySize = newArraySize;
+    }
+
+    public void add(char newElement){
+        if(isFull()){
+            increaseArray();
+        }
+
+        elements[elementCounter] = newElement;
+        elementCounter++;
+    }
+
+    public void add(char newElement, int index) throws Exception {
+        if(index >= 0 && index <= elementCounter){
+            if(index == elementCounter){
+                add(newElement);
+            } else {
+                if (isFull()){
+                    increaseArray();
+                }
+                for(int i = elementCounter; i > index; i--){
+                    elements[i] = elements[i - 1];
+                }
+                elements[index] = newElement;
+                elementCounter++;
+            }
+        } else {
+            throw (new Exception("Wrong index"));
+        }
+    }
+
+
 }
+
 
