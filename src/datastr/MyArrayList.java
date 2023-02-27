@@ -119,8 +119,26 @@ public class MyArrayList {
         }
         return false;
     }
-    public void find() {
+
+    //TODO retrieveNextNeighbour
+    //TODO sort
+
+    //TODO print
+    //TODO makeEmpty;
+    public void sort() {
 
     }
+
+    public void print() throws Exception {
+        if(isEmpty()){
+            throw (new Exception("Array is empty!"));
+        } else {
+            for(int i = 0; i < elementCounter; i++){
+                System.out.println(elements[i] + " ");
+            }
+            System.out.println();
+        }
+    }
+    
 }
 
