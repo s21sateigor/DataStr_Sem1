@@ -1,26 +1,24 @@
 package datastr;
 
-public class MyArrayList
-{
+public class MyArrayList {
     private char[] elements;
     private final int DEFAULT_ARRAY_SIZE = 6;
     private int arraySize = DEFAULT_ARRAY_SIZE;
     private int elementCounter = 0;
 
 
-
-    public MyArrayList(){
+    public MyArrayList() {
         elements = new char[arraySize]; //array with 6 cells
     }
 
-    public MyArrayList(int inputArraySize){
-        if(inputArraySize > 0){
+    public MyArrayList(int inputArraySize) {
+        if (inputArraySize > 0) {
             arraySize = inputArraySize;
         }
         elements = new char[arraySize];
     }
 
-    public boolean isFull(){
+    public boolean isFull() {
 //        if(arraySize == elementCounter){
 //            return true;
 //        }
@@ -28,8 +26,8 @@ public class MyArrayList
         return (elementCounter == arraySize);
     }
 
-    public boolean isEmpty(){
-        if(elementCounter == 0){
+    public boolean isEmpty() {
+        if (elementCounter == 0) {
             return true;
         } else {
             return isEmpty();
@@ -40,25 +38,25 @@ public class MyArrayList
     //var vēl īsāk
     //return (elementCounter == 0);
 
-    public int HowManyElements(){
+    public int HowManyElements() {
         return elementCounter;
     }
 
-    private void increaseArray(){
+    private void increaseArray() {
 
         int newArraySize = (arraySize > 100) ? (int) (arraySize * 1.5) : arraySize * 2;
 
         char[] newElements = new char[newArraySize];
 
-        for(int i = 0; i < elementCounter; i++){
+        for (int i = 0; i < elementCounter; i++) {
             newElements[i] = elements[i];
         }
         elements = newElements;
         arraySize = newArraySize;
     }
 
-    public void add(char newElement){
-        if(isFull()){
+    public void add(char newElement) {
+        if (isFull()) {
             increaseArray();
         }
 
@@ -67,14 +65,14 @@ public class MyArrayList
     }
 
     public void add(char newElement, int index) throws Exception {
-        if(index >= 0 && index <= elementCounter){
-            if(index == elementCounter){
+        if (index >= 0 && index <= elementCounter) {
+            if (index == elementCounter) {
                 add(newElement);
             } else {
-                if (isFull()){
+                if (isFull()) {
                     increaseArray();
                 }
-                for(int i = elementCounter; i > index; i--){
+                for (int i = elementCounter; i > index; i--) {
                     elements[i] = elements[i - 1];
                 }
                 elements[index] = newElement;
@@ -85,27 +83,35 @@ public class MyArrayList
         }
     }
 
-    public void add(int index) throws Exception{
-        if(isEmpty()){
+    public void remove(int index) throws Exception {
+        if (isEmpty()) {
             throw (new Exception("The array is empty!"));
         } else {
-            if(index < 0 || index >= elementCounter){
+            if (index < 0 || index >= elementCounter) {
                 throw (new Exception("Wrong index!"));
             } else {
-                for(int i = index; i < elementCounter - 1; i++){
-                    elements[i] = elements[i+1];
+                for (int i = index; i < elementCounter - 1; i++) {
+                    elements[i] = elements[i + 1];
                 }
-                elements[elementCounter-1] = 0;
+                elements[elementCounter - 1] = 0;
                 elementCounter--;
             }
         }
     }
 
-    public void find(){
-
+    public char retrieve(int index) throws Exception {
+        if (isEmpty()) {
+            throw (new Exception("The array is empty!"));
+        } else {
+            if (index < 0 || index >= elementCounter) {
+                throw (new Exception("Wrong index!"));
+            } else {
+                return elements[index];
+            }
+        }
+    }
+    public void find() {
 
     }
-
 }
-
 
