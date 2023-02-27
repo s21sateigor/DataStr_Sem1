@@ -110,8 +110,17 @@ public class MyArrayList {
             }
         }
     }
+
+    public boolean search(char inputElement){
+        for(int  i = 0; i < elementCounter; i++){
+            if(elements[i] == inputElement){
+                return true;
+            }
+        }
+        return false;
+    }
     public void find() {
- 
+
     }
 }
 
