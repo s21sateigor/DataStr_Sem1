@@ -85,6 +85,26 @@ public class MyArrayList
         }
     }
 
+    public void add(int index) throws Exception{
+        if(isEmpty()){
+            throw (new Exception("The array is empty!"));
+        } else {
+            if(index < 0 || index >= elementCounter){
+                throw (new Exception("Wrong index!"));
+            } else {
+                for(int i = index; i < elementCounter - 1; i++){
+                    elements[i] = elements[i+1];
+                }
+                elements[elementCounter-1] = 0;
+                elementCounter--;
+            }
+        }
+    }
+
+    public void find(){
+
+
+    }
 
 }
 
