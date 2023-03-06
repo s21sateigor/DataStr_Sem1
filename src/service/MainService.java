@@ -34,6 +34,12 @@ public class MainService {
             //charList.print(); // ja būs, tad būs exceptions, neredzēs tālākās rindas.
             charList.add('d');
             charList.print();
+
+            MyArrayList fileList = getArrayElementsFromFile("C:/Users/sater/Documents/javamacibas/dataStr/DatuStr/resources/numbers.txt");
+            fileList.print();
+            fileList.add('z');
+            fileList.remove(2);
+            fileList.print();
         }
         catch(Exception e){
             System.out.println(e);
