@@ -3,7 +3,11 @@ package service;
 import datastr.MyArrayList;
 import datastr.SortingType;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class MainService {
     public static void main(String[] args) {
@@ -36,4 +40,21 @@ public class MainService {
         }
 
     }
+
+    public static MyArrayList getArrayElementsFromFile(String path) throws FileNotFoundException {
+        File myFile = new File(path);
+        FileInputStream myInputStream = new FileInputStream(myFile);
+        Scanner myScanner = new Scanner(myInputStream);
+        MyArrayList listFromPile = new MyArrayList();
+
+        while(myScanner.hasNextLine()){
+            String line = myScanner.nextLine();
+            char element = line.charAt(0);
+            listFromPile.add(element);
+        }
+        myScanner.close();
+        return listFromPile;
+    }
 }
+
+
