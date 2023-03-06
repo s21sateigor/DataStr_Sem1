@@ -120,14 +120,9 @@ public class MyArrayList {
         return false;
     }
 
-    //TODO retrieveNextNeighbour
     //TODO sort
 
-    //TODO print
     //TODO makeEmpty;
-    public void sort() {
-
-    }
 
     public void makeEmpty(){
 
@@ -170,5 +165,49 @@ public class MyArrayList {
             throw (new Exception("Input element was not found in the array list!"));
         }
     }
+
+    public char[] sort(SortingType type) throws Exception {
+
+        if(isEmpty()){
+            throw(new Exception("Array is empty and is not possible to sort!"));
+        } else {
+            char[] sortArray = new char[elementCounter];
+            for(int i = 0; i < elementCounter; i++){
+                sortArray[i] = elements[i];
+            }
+
+            //ascending order
+            if(type == SortingType.ASC){
+                for(int i = 0; i < elementCounter; i++){
+                    for(int j = 0; j < elementCounter; j++){
+                        if(sortArray[i] > sortArray[j]){
+                            char temp = sortArray[i];
+                            sortArray[i] = sortArray[j];
+                            sortArray[j] = temp;
+                        }
+                    }
+                }
+            }
+
+            //descending order
+            else if(type == SortingType.DESC) {
+                for(int i = 0; i < elementCounter; i++){
+                    for(int j = 0; j < elementCounter; j++){
+                        if(sortArray[i] < sortArray[j]){
+                            char temp = sortArray[i];
+                            sortArray[i] = sortArray[j];
+                            sortArray[j] = temp;
+                        }
+                    }
+                }
+            }
+            else {
+                throw(new Exception("Wrong sorting Type"));
+            }
+            return sortArray;
+        }
+
+    }
+
 }
 
