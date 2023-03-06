@@ -27,18 +27,19 @@ public class MyArrayList {
     }
 
     public boolean isEmpty() {
-        if (elementCounter == 0) {
-            return true;
-        } else {
-            return isEmpty();
-        }
+        return elementCounter == 0;
+//        if (elementCounter == 0) {
+//            return true;
+//        } else {
+//            return isEmpty();
+//        }
     } // short if-else
     //return (elementCounter == 0) ? true : false;
 
     //var vēl īsāk
     //return (elementCounter == 0);
 
-    public int HowManyElements() {
+    public int howManyElements() {
         return elementCounter;
     }
 
@@ -125,7 +126,10 @@ public class MyArrayList {
     //TODO makeEmpty;
 
     public void makeEmpty(){
-
+        arraySize = DEFAULT_ARRAY_SIZE;
+        elementCounter = 0;
+        elements = new char[arraySize];
+        System.gc();
     }
 
     public void print() throws Exception {
@@ -133,7 +137,7 @@ public class MyArrayList {
             throw (new Exception("Array is empty!"));
         } else {
             for(int i = 0; i < elementCounter; i++){
-                System.out.println(elements[i] + " ");
+                System.out.print(elements[i] + " ");
             }
             System.out.println();
         }
@@ -180,7 +184,7 @@ public class MyArrayList {
             if(type == SortingType.ASC){
                 for(int i = 0; i < elementCounter; i++){
                     for(int j = 0; j < elementCounter; j++){
-                        if(sortArray[i] > sortArray[j]){
+                        if(sortArray[i] < sortArray[j]){
                             char temp = sortArray[i];
                             sortArray[i] = sortArray[j];
                             sortArray[j] = temp;
@@ -193,7 +197,7 @@ public class MyArrayList {
             else if(type == SortingType.DESC) {
                 for(int i = 0; i < elementCounter; i++){
                     for(int j = 0; j < elementCounter; j++){
-                        if(sortArray[i] < sortArray[j]){
+                        if(sortArray[i] > sortArray[j]){
                             char temp = sortArray[i];
                             sortArray[i] = sortArray[j];
                             sortArray[j] = temp;
