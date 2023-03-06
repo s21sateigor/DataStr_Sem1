@@ -2,6 +2,8 @@ package service;
 
 import datastr.MyArrayList;
 import datastr.SortingType;
+import model.Faculty;
+import model.Student;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -39,6 +41,20 @@ public class MainService {
             fileList.add('z');
             fileList.remove(2);
             fileList.print();
+
+            MyArrayList<String> stringList = new MyArrayList<>();
+            stringList.add("Karina");
+            stringList.add("Jānis");
+            stringList.add("Žanis", 0);
+            stringList.print();
+            stringList.remove(1);
+            stringList.print();
+
+            MyArrayList<Student> studentList = new MyArrayList<>();
+            studentList.add(new Student("Jānis", "Bērziņš", Faculty.ITF, "123456-12345"));
+            studentList.add(new Student("Zanis", "Zarins", Faculty.TSF, "299999-12314"));
+            studentList.print();
+            
         }
         catch(Exception e){
             System.out.println(e);

@@ -1,7 +1,5 @@
 package datastr;
 
-import static java.lang.StringUTF16.compareTo;
-
 public class MyArrayList<T> {
     private T[] elements;
     private final int DEFAULT_ARRAY_SIZE = 6;
@@ -128,10 +126,10 @@ public class MyArrayList<T> {
     //TODO makeEmpty;
 
     public void makeEmpty(){
-        arraySize = DEFAULT_ARRAY_SIZE;
-        elementCounter = 0;
-        elements = new char [arraySize];
-        System.gc();
+//        arraySize = DEFAULT_ARRAY_SIZE;
+//        elementCounter = 0;
+//        elements = new char [arraySize];
+//        System.gc();
     }
 
     public void print() throws Exception {
@@ -199,7 +197,7 @@ public class MyArrayList<T> {
                     }
                 }
             }
-            
+
             return sortArray;
         }
 
