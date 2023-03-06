@@ -1,21 +1,23 @@
 package datastr;
 
-public class MyArrayList {
-    private char[] elements;
+import static java.lang.StringUTF16.compareTo;
+
+public class MyArrayList<T> {
+    private T[] elements;
     private final int DEFAULT_ARRAY_SIZE = 6;
     private int arraySize = DEFAULT_ARRAY_SIZE;
     private int elementCounter = 0;
 
 
     public MyArrayList() {
-        elements = new char[arraySize]; //array with 6 cells
+        elements = (T[]) new Object[arraySize]; //array with 6 cells
     }
 
     public MyArrayList(int inputArraySize) {
         if (inputArraySize > 0) {
             arraySize = inputArraySize;
         }
-        elements = new char[arraySize];
+        elements = (T[]) new Object[arraySize];
     }
 
     public boolean isFull() {
@@ -47,7 +49,7 @@ public class MyArrayList {
 
         int newArraySize = (arraySize > 100) ? (int) (arraySize * 1.5) : arraySize * 2;
 
-        char[] newElements = new char[newArraySize];
+        T[] newElements = (T[]) new Object[newArraySize];
 
         for (int i = 0; i < elementCounter; i++) {
             newElements[i] = elements[i];
@@ -56,7 +58,7 @@ public class MyArrayList {
         arraySize = newArraySize;
     }
 
-    public void add(char newElement) {
+    public void add(T newElement) {
         if (isFull()) {
             increaseArray();
         }
@@ -65,7 +67,7 @@ public class MyArrayList {
         elementCounter++;
     }
 
-    public void add(char newElement, int index) throws Exception {
+    public void add(T newElement, int index) throws Exception {
         if (index >= 0 && index <= elementCounter) {
             if (index == elementCounter) {
                 add(newElement);
@@ -94,13 +96,13 @@ public class MyArrayList {
                 for (int i = index; i < elementCounter - 1; i++) {
                     elements[i] = elements[i + 1];
                 }
-                elements[elementCounter - 1] = 0;
+                elements[elementCounter - 1] = null;
                 elementCounter--;
             }
         }
     }
 
-    public char retrieve(int index) throws Exception {
+    public T retrieve(int index) throws Exception {
         if (isEmpty()) {
             throw (new Exception("The array is empty!"));
         } else {
@@ -112,7 +114,7 @@ public class MyArrayList {
         }
     }
 
-    public boolean search(char inputElement){
+    public boolean search(T inputElement){
         for(int  i = 0; i < elementCounter; i++){
             if(elements[i] == inputElement){
                 return true;
@@ -128,7 +130,7 @@ public class MyArrayList {
     public void makeEmpty(){
         arraySize = DEFAULT_ARRAY_SIZE;
         elementCounter = 0;
-        elements = new char[arraySize];
+        elements = new char [arraySize];
         System.gc();
     }
 
@@ -143,7 +145,7 @@ public class MyArrayList {
         }
     }
 
-    public char[] retrieveNextNeighbour(char inputElement) throws Exception {
+    public T[] retrieveNextNeighbour(T inputElement) throws Exception {
         if(search(inputElement)){
             int howManySearchedElements = 0;
             for(int i = 0; i < elementCounter; i++){
@@ -156,7 +158,7 @@ public class MyArrayList {
                 howManySearchedElements--;
             }
 
-            char[] nextNeighbour = new char[howManySearchedElements];
+            T[] nextNeighbour = (T[]) new Object[howManySearchedElements];
             int indexForNeighbour = 0;
             for(int i = 0; i < elementCounter - 1; i++){
                 if(elements[i] == inputElement){
@@ -170,44 +172,34 @@ public class MyArrayList {
         }
     }
 
-    public char[] sort(SortingType type) throws Exception {
+    public T[] sort(SortingType type) throws Exception {
 
         if(isEmpty()){
             throw(new Exception("Array is empty and is not possible to sort!"));
         } else {
-            char[] sortArray = new char[elementCounter];
+            T[] sortArray = (T[]) new Object[elementCounter];
             for(int i = 0; i < elementCounter; i++){
                 sortArray[i] = elements[i];
+            }
+            int sortVariable = 1; //DESC
+            if (type == SortingType.ASC){
+                sortVariable = -1;
             }
 
             //ascending order
             if(type == SortingType.ASC){
                 for(int i = 0; i < elementCounter; i++){
                     for(int j = 0; j < elementCounter; j++){
-                        if(sortArray[i] < sortArray[j]){
-                            char temp = sortArray[i];
+//                        if(sortArray[i] < sortArray[j]){
+                        if( ((Comparable) (sortArray[i])).compareTo(sortArray[j]) == sortVariable){
+                            T temp = sortArray[i];
                             sortArray[i] = sortArray[j];
                             sortArray[j] = temp;
                         }
                     }
                 }
             }
-
-            //descending order
-            else if(type == SortingType.DESC) {
-                for(int i = 0; i < elementCounter; i++){
-                    for(int j = 0; j < elementCounter; j++){
-                        if(sortArray[i] > sortArray[j]){
-                            char temp = sortArray[i];
-                            sortArray[i] = sortArray[j];
-                            sortArray[j] = temp;
-                        }
-                    }
-                }
-            }
-            else {
-                throw(new Exception("Wrong sorting Type"));
-            }
+            
             return sortArray;
         }
 
