@@ -129,6 +129,10 @@ public class MyArrayList {
 
     }
 
+    public void makeEmpty(){
+
+    }
+
     public void print() throws Exception {
         if(isEmpty()){
             throw (new Exception("Array is empty!"));
@@ -139,6 +143,32 @@ public class MyArrayList {
             System.out.println();
         }
     }
-    
+
+    public char[] retrieveNextNeighbour(char inputElement) throws Exception {
+        if(search(inputElement)){
+            int howManySearchedElements = 0;
+            for(int i = 0; i < elementCounter; i++){
+                if(elements[i] == inputElement){
+                    howManySearchedElements++;
+                }
+            }
+
+            if(elements[elementCounter-1] == inputElement){
+                howManySearchedElements--;
+            }
+
+            char[] nextNeighbour = new char[howManySearchedElements];
+            int indexForNeighbour = 0;
+            for(int i = 0; i < elementCounter - 1; i++){
+                if(elements[i] == inputElement){
+                    nextNeighbour[indexForNeighbour] = elements[i+1];
+                    indexForNeighbour++;
+                }
+            }
+            return nextNeighbour;
+        } else {
+            throw (new Exception("Input element was not found in the array list!"));
+        }
+    }
 }
 
