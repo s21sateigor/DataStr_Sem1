@@ -48,6 +48,7 @@ public class Student implements Comparable<Student>
         return faculty;
     }
 
+
     public void setSurname(String surname) {
         this.surname = surname;
     }
@@ -62,11 +63,7 @@ public class Student implements Comparable<Student>
     }
 
     public void setName(String inputName) {
-        if(inputName != null && inputName.matches("[A-ŽĪĶĻŠČ]")){
-            name = inputName;
-        } else {
-            name = "Unknown";
-        }
+        name = inputName;
     }
 
     public void setPersonCode(String inputPersonCode){
